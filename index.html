@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mac 修理診断判定ツール</title>
+
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f5f7fa;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    flex: 1;
+    min-width: 320px;
+}
+
+.part-item {
+    margin-bottom: 10px;
+}
+
+.result {
+    margin-top: 15px;
+}
+
+.diagnostic-item {
+    padding: 8px;
+    margin-bottom: 6px;
+    background: #eef6ff;
+    border-radius: 6px;
+}
+
+.count {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Mac 修理診断判定ツール</h1>
+<p>交換したパーツを選択すると必要な診断が表示されます。</p>
+
+<div class="container">
+
+<div class="card">
+<h2>交換パーツ</h2>
+
+<input
+    type="text"
+    id="search"
+    class="search-box"
+    placeholder="パーツ検索..."
+>
+
+<div id="partsContainer"></div>
+
+</div>
+
+<div class="card">
+
+<h2>必要な診断</h2>
+
+<div id="count" class="count">
+診断数：0
+</div>
+
+<div id="results" class="result">
+診断はありません
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const rules = {
+
+    "バッテリー": [
+        "System Configuration",
+        "Battery Diagnostic"
+    ],
+
+    "ディスプレイ": [
+        "Display Diagnostic",
+        "System Configuration"
+    ],
+
+    "トラックパッド": [
+        "Input Device Diagnostic",
+        "System Configuration"
+    ],
+
+    "キーボード": [
+        "Input Device Diagnostic",
+        "System Configuration"
+    ],
+
+    "ロジックボード": [
+        "System Configuration",
+        "AST2",
+        "Final Quality Test"
+    ],
+
+    "Touch ID": [
+        "System Configuration",
+        "Touch ID Pairing"
+    ],
+
+    "スピーカー": [
+        "Audio Diagnostic"
+    ],
+
+    "カメラ": [
+        "Camera Diagnostic"
+    ]
+};
+
+const partsContainer = document.getElementById("partsContainer");
+const resultsDiv = document.getElementById("results");
+const countDiv = document.getElementById("count");
+
+function createPartList(filter = "") {
+
+    partsContainer.innerHTML = "";
+
+    Object.keys(rules)
+        .filter(part =>
+            part.toLowerCase().includes(filter.toLowerCase())
+        )
+        .forEach(part => {
+
+            const div = document.createElement("div");
+            div.className = "part-item";
+
+            div.innerHTML = `
+                <label>
+                    <input type="checkbox" value="${part}">
+                    ${part}
+                </label>
+            `;
+
+            partsContainer.appendChild(div);
+        });
+
+    attachEvents();
+}
+
+function attachEvents() {
+
+    document.querySelectorAll("input[type=checkbox]")
+        .forEach(cb => {
+            cb.addEventListener("change", updateDiagnostics);
+        });
+}
+
+function updateDiagnostics() {
+
+    const selectedParts = [
+        ...document.querySelectorAll("input[type=checkbox]:checked")
+    ].map(cb => cb.value);
+
+    const diagnostics = new Set();
+
+    selectedParts.forEach(part => {
+        rules[part].forEach(diag => diagnostics.add(diag));
+    });
+
+    const diagArray = [...diagnostics];
+
+    countDiv.textContent =
+        `診断数：${diagArray.length}`;
+
+    if (diagArray.length === 0) {
+        resultsDiv.innerHTML = "診断はありません";
+        return;
+    }
+
+    resultsDiv.innerHTML = diagArray
+        .sort()
+        .map(diag =>
+            `<div class="diagnostic-item">${diag}</div>`
+        )
+        .join("");
+}
+
+document
+.getElementById("search")
+.addEventListener("input", e => {
+    createPartList(e.target.value);
+});
+
+createPartList();
+
+</script>
+
+</body>
+</html>
+使い方
