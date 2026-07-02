@@ -2,6 +2,12 @@
 // MacBook 診断確認ツール
 // ========================================
 
+// 優先表示する診断
+const priorityDiagnostics = [
+    "デバイスの復元",
+    "システム構成"
+];
+
 let rules = {};
 
 // ------------------------
@@ -89,17 +95,40 @@ function updateResult() {
 
     } else {
 
-        [...diagnostics]
-            .sort()
-            .forEach(diag => {
+        const sortedDiagnostics = [...diagnostics].sort((a, b) => {
 
-                result.innerHTML += `
-                    <div class="diagnostic-item">
-                        ${diag}
-                    </div>
-                `;
+    const indexA = priorityDiagnostics.indexOf(a);
+    const indexB = priorityDiagnostics.indexOf(b);
 
-            });
+    // 両方とも優先項目
+    if (indexA !== -1 && indexB !== -1) {
+        return indexA - indexB;
+    }
+
+    // Aだけ優先
+    if (indexA !== -1) {
+        return -1;
+    }
+
+    // Bだけ優先
+    if (indexB !== -1) {
+        return 1;
+    }
+
+    // それ以外は名前順
+    return a.localeCompare(b, "ja");
+
+});
+
+sortedDiagnostics.forEach(diag => {
+
+    result.innerHTML += `
+        <div class="diagnostic-item">
+            ${diag}
+        </div>
+    `;
+
+});
 
     }
 
