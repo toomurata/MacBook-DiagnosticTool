@@ -1,0 +1,30 @@
+{
+    "Battery":[
+        "System Configuration",
+        "Battery Diagnostic"
+    ],
+
+    "Display":[
+        "System Configuration",
+        "Display Diagnostic"
+    ],
+
+    "Logic Board":[
+        "System Configuration",
+        "AST2",
+        "Final Quality Test"
+    ],
+
+    "Top Case":[
+        "Keyboard Test",
+        "Trackpad Test"
+    ],
+
+    "Camera":[
+        "Camera Diagnostic"
+    ],
+
+    "Speaker":[
+        "Audio Diagnostic"
+    ]
+}
