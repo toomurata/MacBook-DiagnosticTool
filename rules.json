@@ -1,30 +1,31 @@
 {
+    "ディスプレイ":[
+        "システム構成",
+        "ディスプレイの異常",
+        "残像",
+        "修理後の診断"
+    ],
+
     "バッテリー":[
-        "System Configuration",
-        "Battery Diagnostic"
+        "修理後の診断"
     ],
 
-    "Display":[
-        "System Configuration",
-        "Display Diagnostic"
+    "ロジックボード":[
+        "システムの復元",
+        "システム構成",
+        "修理後の診断"
     ],
 
-    "Logic Board":[
-        "System Configuration",
-        "AST2",
-        "Final Quality Test"
-    ],
-
-    "Top Case":[
+    "上部ケース":[
         "Keyboard Test",
         "Trackpad Test"
     ],
 
-    "Camera":[
+    "蓋角度センサー":[
         "Camera Diagnostic"
     ],
 
-    "Speaker":[
+    "スピーカー":[
         "Audio Diagnostic"
     ]
 }
