@@ -2,29 +2,45 @@
    共通
 ========================== */
 
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+html,
 body {
-    margin: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================
+   全体
+========================== */
+
+body {
+    padding: 40px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background: #f5f5f7;
     color: #1d1d1f;
 }
 
 /* ==========================
-   タイトル
+   ヘッダー
 ========================== */
 
+header {
+    margin-bottom: 30px;
+}
+
 h1 {
-    margin-bottom: 8px;
+    margin: 0 0 8px;
     font-size: 32px;
 }
 
-p {
+header p {
+    margin: 0;
     color: #6e6e73;
-    margin-bottom: 30px;
 }
 
 /* ==========================
@@ -35,6 +51,7 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+    align-items: start;
 }
 
 /* ==========================
@@ -42,10 +59,15 @@ p {
 ========================== */
 
 .card {
-    background: white;
-    padding: 25px;
+    background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
 }
 
 /* ==========================
@@ -55,20 +77,27 @@ p {
 .search-box {
     display: block;
     width: 100%;
+
+    margin: 0 0 20px;
     padding: 12px;
 
-    margin-bottom: 20px;
+    font-size: 15px;
+    font-family: inherit;
 
     border: 1px solid #d2d2d7;
     border-radius: 10px;
 
-    font-size: 15px;
+    background: #fff;
+
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .search-box:focus {
-    outline: none;
     border-color: #0071e3;
-    box-shadow: 0 0 0 3px rgba(0,113,227,.15);
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
 }
 
 /* ==========================
@@ -81,16 +110,19 @@ p {
 }
 
 .part-item {
-    padding: 8px 0;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 10px 0;
+    border-bottom: 1px solid #ececec;
 }
 
 .part-item:last-child {
     border-bottom: none;
 }
 
-.part-item input {
-    margin-right: 8px;
+.part-item label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
 }
 
 /* ==========================
@@ -99,14 +131,15 @@ p {
 
 #count {
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 .diagnostic-item {
     background: #eaf4ff;
     border-left: 4px solid #0071e3;
     border-radius: 8px;
-    padding: 10px 12px;
+
+    padding: 12px;
     margin-bottom: 10px;
 }
 
@@ -114,10 +147,10 @@ p {
    スマホ対応
 ========================== */
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
 
     body {
-        margin: 20px;
+        padding: 20px;
     }
 
     .container {
