@@ -48,8 +48,15 @@ header p {
 
 /* パーツ一覧 */
 
+#partCount {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d1d1f;
+}
+
 .parts-list {
-    max-height: 600px;
+    max-height: 75vh;
     overflow-y: auto;
 }
 
@@ -84,6 +91,16 @@ header p {
     margin-bottom: 10px;
 }
 
+.system-configuration-note {
+    margin: 16px 0 0;
+    padding: 12px;
+    border-radius: 8px;
+    background: #fff8e1;
+    color: #6b5200;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
 /* スマホ */
 
 @media (max-width: 900px) {
@@ -95,5 +112,64 @@ header p {
     .container {
         grid-template-columns: 1fr;
     }
+
+}
+
+.diagnostic-label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+}
+
+.diagnostic-checkbox{
+    width:18px;
+    height:18px;
+}
+
+.completed{
+    color:#999;
+    text-decoration:line-through;
+}
+
+.complete-message{
+    display:block;
+    padding:12px;
+    border-radius:8px;
+    background:#e8f5e9;
+    color:#1a7f37;
+    font-weight:600;
+    text-align:center;
+}
+
+/* 診断条件 */
+
+.settings {
+
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    margin: 20px 0 30px;
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #d2d2d7;
+
+}
+
+.settings-title {
+
+    font-weight: 600;
+    color: #1d1d1f;
+
+}
+
+.setting-item {
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    cursor: pointer;
 
 }

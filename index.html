@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
     <title>MacBook 修理後の診断確認ツール</title>
 
     <link rel="stylesheet" href="style.css">
@@ -13,14 +14,34 @@
 
 <header>
     <h1>MacBook 診断確認ツール</h1>
-    <p>交換したパーツを選択してください。</p>
+    <p>診断条件および交換パーツを選択すると、必要な診断が表示されます。</p>
 </header>
+
+<!-- 診断条件 -->
+<div class="settings">
+
+    <span class="settings-title">診断条件</span>
+
+    <label class="setting-item">
+        <input
+            type="checkbox"
+            id="touchBar"
+            onchange="loadRules()">
+        Touch Bar搭載モデル
+    </label>
+
+</div>
 
 <div class="container">
 
+    <!-- 交換パーツ -->
     <section class="card">
 
         <h2>交換パーツ</h2>
+
+        <div id="partCount">
+            選択数：0
+        </div>
 
         <div
             id="partsContainer"
@@ -29,6 +50,7 @@
 
     </section>
 
+    <!-- 必要な診断 -->
     <section class="card">
 
         <h2>必要な診断</h2>
