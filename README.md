@@ -1,1 +1,1 @@
-# MacDiagnosticTool
+# MacBook-DiagnosticTool
