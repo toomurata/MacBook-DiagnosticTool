@@ -224,23 +224,6 @@ function updateResult() {
 
     });
 
-    const hasTopCaseSelected = [...checkedParts].some(
-        part => part.value === "上部ケース"
-    );
-
-    if (hasTopCaseSelected) {
-
-        result.insertAdjacentHTML(
-            "beforeend",
-            `
-                <p class="system-configuration-note">
-                    MacBook Airモデルでは、上部ケースを交換した後にシステム構成を実行する必要はありません。
-                </p>
-            `
-        );
-
-    }
-
     const hasLogicBoardSelected = [...checkedParts].some(
         part => part.value === "ロジックボード"
     );
@@ -252,6 +235,23 @@ function updateResult() {
             `
                 <p class="system-configuration-note">
                     ファームウェアをアップデートして最新のmacOSをインストールするため、「デバイスの復元」プログラムを実行してください。
+                </p>
+            `
+        );
+
+    }
+
+    const hasTopCaseSelected = [...checkedParts].some(
+        part => part.value === "上部ケース"
+    );
+
+    if (hasTopCaseSelected) {
+
+        result.insertAdjacentHTML(
+            "beforeend",
+            `
+                <p class="system-configuration-note">
+                    MacBook Airモデルでは、上部ケースを交換した後にシステム構成を実行する必要はありません。
                 </p>
             `
         );
