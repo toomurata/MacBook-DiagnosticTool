@@ -224,23 +224,6 @@ function updateResult() {
 
     });
 
-    const hasLogicBoardSelected = [...checkedParts].some(
-        part => part.value === "ロジックボード"
-    );
-
-    if (hasLogicBoardSelected) {
-
-        result.insertAdjacentHTML(
-            "beforeend",
-            `
-                <p class="system-configuration-note">
-                    ファームウェアをアップデートして最新のmacOSをインストールするため、「デバイスの復元」プログラムを実行してください。
-                </p>
-            `
-        );
-
-    }
-
     const hasTopCaseSelected = [...checkedParts].some(
         part => part.value === "上部ケース"
     );
@@ -325,6 +308,25 @@ function updateResult() {
                 </p>
             `
         );
+
+    }
+
+    const hasLogicBoardSelected = [...checkedParts].some(
+        part => part.value === "ロジックボード"
+    );
+
+    if (hasLogicBoardSelected) {
+
+        const firstNote = result.querySelector(".system-configuration-note");
+        const logicBoardNote = document.createElement("p");
+        logicBoardNote.className = "system-configuration-note";
+        logicBoardNote.textContent = "ファームウェアをアップデートして最新のmacOSをインストールするため、「デバイスの復元」プログラムを実行してください。";
+
+        if (firstNote) {
+            firstNote.before(logicBoardNote);
+        } else {
+            result.append(logicBoardNote);
+        }
 
     }
 
